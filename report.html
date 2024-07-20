@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Report Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: azure; }
+        .container { max-width: 800px; margin: 50px auto; }
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 10px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Report Data Pengisian Formulir</h1>
+      <table id="reportTable">
+        <tr>
+          <th>Nama</th>
+          <th>Tempat Lahir</th>
+          <th>Tanggal Lahir</th>
+          <th>Agama</th>
+          <th>Alamat</th>
+          <th>No Telp</th>
+          <th>Jenis Kelamin</th>
+          <th>Nama Sekolah</th>
+          <th>Kelas</th>
+          <th>Foto</th>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let data = JSON.parse(localStorage.getItem('formData')) || [];
+            let table = document.getElementById('reportTable');
+
+            data.forEach(function(row) {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `<td>${row.nama}</td>
+                                <td>${row.tempatLahir}</td>
+                                <td>${row.tanggal}</td>
+                                <td>${row.agama}</td>
+                                <td>${row.alamat}</td>
+                                <td>${row.number}</td>
+                                <td>${row.jenisKelamin}</td>
+                                <td>${row.school}</td>
+                                <td>${row.class}</td>
+                                <td>${row.foto}</td>`;
+                table.appendChild(tr);
+            });
+        });
+    </script>
+  </body>
+</html>

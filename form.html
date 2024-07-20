@@ -1,86 +1,128 @@
 <!DOCTYPE html>
 <html style="background-color: azure;">
-    <head><title>FORMULIR BIODATA PATRIOT JAYA TUBAN</title></head>
+    <head>
+        <title>FORMULIR BIODATA PATRIOT JAYA TUBAN</title>
+        <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: 50px auto; }
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 10px; }
+        th { background-color: #f2f2f2; }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <form id="biodataForm">
+                <!-- ini field -->
+                <fieldset>
+                    <legend><h1>Biodata Patriot Jaya Tuban</h1></legend>
+                    <table>
+                        <tr>
+                            <td>Nama Player</td>
+                            <td>:</td>
+                            <td><input type="text" id="nama" name="nama"
+                                    required /><br /></td>
+                        </tr>
+                        <tr>
+                            <td>Tempat/Tanggal Lahir</td>
+                            <td>:</td>
+                            <td><input type="text" id="tempatLahir"
+                                    name="tempatLahir" /> <input type="date"
+                                    id="tanggal" name="tanggal" /></td>
+                        </tr>
+                        <tr>
+                            <td>Agama</td>
+                            <td>:</td>
+                            <td><select id="agama" name="agama">
+                                    <option value="islam"> Islam</option>
+                                    <option value="kristen"> Kristen</option>
+                                    <option value="protestan">
+                                        Protestan</option>
+                                    <option value="katolik"> Katolik</option>
+                                    <option value="budha"> Budha</option>
+                                    <option value="hindu"> Hindu</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>:</td>
+                            <td><textarea id="alamat" name="komentar" rows="4"
+                                    cols="50"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>No Telp/Hp</td>
+                            <td>:</td>
+                            <td><input type="number" id="number"
+                                    name="number" /></td>
+                        </tr>
+                        <tr>
+                            <td>Jenis Kelamin</td>
+                            <td>:</td>
+                            <td><input type="radio" id="jenisKelaminPria"
+                                    name="jenisKelamin" value="Pria" /> Pria
+                                <input type="radio" id="jenisKelaminWanita"
+                                    name="jenisKelamin" value="Wanita" />
+                                Wanita</td>
+                        </tr>
+                        <tr>
+                            <td>Nama Sekolah</td>
+                            <td>:</td>
+                            <td><input type="text" id="school"
+                                    name="school" /></td>
+                        </tr>
+                        <tr>
+                            <td>Kelas</td>
+                            <td>:</td>
+                            <td><input type="number" id="class"
+                                    name="class" /></td>
+                        </tr>
+                        <tr>
+                            <td>Pas Foto</td>
+                            <td>:</td>
+                            <td><input type="file" id="foto" name="foto" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" id="submit"
+                                    value="SUBMIT" /></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
 
-<body> 
+        <script>
+        document.getElementById('submit').addEventListener('click', function() {
+            let nama = document.getElementById('nama').value;
+            let tempatLahir = document.getElementById('tempatLahir').value;
+            let tanggal = document.getElementById('tanggal').value;
+            let agama = document.getElementById('agama').value;
+            let alamat = document.getElementById('alamat').value;
+            let number = document.getElementById('number').value;
+            let jenisKelamin = document.querySelector('input[name="jenisKelamin"]:checked').value;
+            let school = document.getElementById('school').value;
+            let classValue = document.getElementById('class').value;
+            let foto = document.getElementById('foto').value;
 
-<form>
-<!-- ini field -->
-<fieldset>
-<legend><h1>Biodata Patriot Jaya Tuban</h1></legend>
-<table>
-    <tr>
-        <td>Nama Player</td>
-        <td>:</td>
-        <td><input type="name" name="nama"  required/><br /></td>
-    </tr>       
+            let formData = {
+                nama: nama,
+                tempatLahir: tempatLahir,
+                tanggal: tanggal,
+                agama: agama,
+                alamat: alamat,
+                number: number,
+                jenisKelamin: jenisKelamin,
+                school: school,
+                class: classValue,
+                foto: foto
+            };
 
-    <tr>
-        <td>Tempat/Tanggal Lahir</td>
-        <td>:</td>
-        <td><input type="name" name="tempatLahir"/> <input type="date" name="tanggal" /></td>
-    </tr>
+            let data = JSON.parse(localStorage.getItem('formData')) || [];
+            data.push(formData);
+            localStorage.setItem('formData', JSON.stringify(data));
 
-    <tr>
-        <td>Agama</td>
-        <td>:</td>
-        <td><select name="agama">
-            <option value="islam"> Islam</option>
-            <option value="kristen"> Kristen</option>
-            <option value="protestan"> Protestan</option>
-            <option value="katolik"> Katolik</option>
-            <option value="budha"> Budha</option>
-            <option value="hindu"> Hindu</option>
-        </select></td>
-    </tr>
-
-    <tr>
-        <td>Alamat</td>
-        <td>:</td>
-        <td><textarea name="komentar" rows="4" cols="50" ></textarea> </td>
-    </tr>
-
-    <tr>
-        <td>No Telp/Hp</td>
-        <td>:</td>
-        <td><input type="number" name="number" /></td>
-    </tr>
-
-    <tr>
-        <td>Jenis Kelamin</td>
-        <td>:</td>
-        <td><input type="radio" name="jenisKelamin" /> Pria
-            <input type="radio" name="jenisKelamin" /> Wanita</td>
-    </tr>
-
-    <tr>
-        <td>Nama Sekolah</td>
-        <td>:</td>
-        <td><input type="name" name="school" /></input></td>
-    </tr>
-
-    <tr>
-        <td>Kelas</td>
-        <td>:</td>
-        <td><input type="number" name="class" /></td>
-    </tr>
-
-    <tr>
-        <td>Pas Foto</td>
-        <td>:</td>
-        <td><input type="file" name="foto" /></td>
-    </tr>
-
-    <tr>
-        <td><input type="submit" name="submit" value="SUBMIT"/></td>
-        <td></td>
-        <td></td>
-    </tr>
-
-</table>
-</fieldset>
-
-</form>
-
-</body>
+            alert('Data berhasil disimpan!');
+        });
+    </script>
+    </body>
 </html>
